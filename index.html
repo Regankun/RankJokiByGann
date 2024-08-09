@@ -82,7 +82,27 @@
         <ul id="cart-items"></ul>
         <p>Total: Rp <span id="total-price">0</span></p>
     </div>
+    
+    <h2>Form Joki</h2>
+    <form id="jokiForm">
+        <label for="name">Nama:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
 
+        <label for="task">Deskripsi Joki:</label><br>
+        <textarea id="task" name="task" required></textarea>
+        <br>
+        <h3>Note : Kirim Foto/Ss Format joki ke Admin di bawah ini</p>
+        
+        <h4>Contoh :</h4>
+        <div class='product'>
+        <img src="FotoContoh.jpg" alt="Produk 2"></div>
+
+        <button type="submit">Kirim via WhatsApp</button></h3>
+    </form>
+    
     <script>
         let cart = [];
         let totalPrice = 0;
@@ -103,6 +123,20 @@
             });
             document.getElementById('total-price').textContent = totalPrice;
         }
+        
+        document.getElementById('jokiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let task = document.getElementById('task').value;
+
+            let message = `Nama: ${name}\nEmail: ${email}\nDeskripsi Tugas: ${task}`;
+
+            let whatsappUrl = `https://api.whatsapp.com/send?phone=6283148268406&text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
     </script>
 </body>
 </html>
